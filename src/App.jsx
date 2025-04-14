@@ -13,7 +13,7 @@ import { login } from './redux/authSlice';
 import Today from './pages/Today';
 import Dashboard from './pages/Dashboard';
 import PrivacyPage from './pages/PrivacyPage';
-import TermsOfUse from './components/TermsofUse';
+import TermsOfUse from './components/TermsOfUse';
 import Contact from './components/Contact';
 
 const App = () => {
