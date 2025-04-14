@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FiMail, FiPhone, FiMapPin, FiSend, FiCheckCircle } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
+import { BASEURL } from '../url';
 const Contact = () => {
   const { user } = useSelector((state) => state.auth);
   const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ const Contact = () => {
     try {
       const token = localStorage.getItem('token')
       console.log(token)
-      const response = await fetch('http://localhost:8080/api/contact', {
+      const response = await fetch(`${BASEURL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

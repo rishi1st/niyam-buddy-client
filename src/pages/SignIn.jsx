@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../redux/authSlice';
+import { BASEURL } from '../url';
 
 const SignIn = ({ onSwitch }) => {
   const [formData, setFormData] = useState({
@@ -70,7 +71,7 @@ const SignIn = ({ onSwitch }) => {
     setIsLoading(true);
     
     try {
-      const response = await axios.post('http://localhost:8080/api/user/login', formData, {
+      const response = await axios.post(`${BASEURL}/api/user/login`, formData, {
         headers: {
           'Content-Type': 'application/json'
         }

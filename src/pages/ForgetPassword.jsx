@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { BASEURL } from '../url';
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const ForgotPassword = () => {
 
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:8080/api/user/auth/sendforgetopt', { email });
+      await axios.post(`${BASEURL}/api/user/auth/sendforgetopt`, { email });
       toast.success('OTP sent to your email!');
       startCountdown();
       setStep(2);
@@ -58,7 +59,7 @@ const ForgotPassword = () => {
     
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:8080/api/user/auth/sendforgetopt', { email });
+      await axios.post(`${BASEURL}/api/user/auth/sendforgetopt`, { email });
       toast.success('OTP resent to your email!');
       startCountdown();
     } catch (error) {
@@ -81,7 +82,7 @@ const ForgotPassword = () => {
 
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:8080/api/user/auth/verifyforgetopt', { 
+      await axios.post(`${BASEURL}/api/user/auth/verifyforgetopt`, { 
         email, 
         otp,
         newPassword

@@ -3,7 +3,7 @@ import { FiUser, FiMail, FiPhone, FiLock, FiEye, FiEyeOff, FiArrowRight, FiCheck
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { BASEURL } from '../url';
 const SignUp = ({ setIsLogin }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -72,7 +72,7 @@ const SignUp = ({ setIsLogin }) => {
 
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:8080/api/user/auth/send-otp', formData);
+      await axios.post(`${BASEURL}/api/user/auth/send-otp`, formData);
       toast.success('OTP sent to your email! Valid for 5 minutes');
       startCountdown();
       setStep(2);
@@ -87,7 +87,7 @@ const SignUp = ({ setIsLogin }) => {
     if (countdown > 0) return;
     setIsLoading(true);
     try {
-      await axios.post('http://localhost:8080/api/user/auth/send-otp', formData);
+      await axios.post(`${BASEURL}/api/user/auth/send-otp`, formData);
       toast.success('New OTP sent to your email!');
       startCountdown();
     } catch (error) {
@@ -106,7 +106,7 @@ const SignUp = ({ setIsLogin }) => {
 
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:8080/api/user/auth/verify-otp', {
+      const response = await axios.post(`${BASEURL}/api/user/auth/verify-otp`, {
         email: formData.email,
         otp
       });

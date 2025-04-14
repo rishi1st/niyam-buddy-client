@@ -6,12 +6,11 @@ import {
 } from "lucide-react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const API_BASE_URL = 'http://localhost:8080/api';
+import { BASEURL } from '../url';
 
 const fetchRoutine = async () => {
   try {
-    const response = await fetch(`${API_BASE_URL}/routine`, {
+    const response = await fetch(`${BASEURL}/api/routine`, {
       method: 'GET',
       headers: {
         
@@ -42,7 +41,7 @@ const fetchRoutine = async () => {
 
 const saveRoutine = async (routine) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/save-routine`, {
+    const response = await fetch(`${BASEURL}/api/save-routine`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import ProgressChart from '../components/ProgressChart';
 import StudyCalendar from '../components/StudyCalendar';
 import GoalTracker from '../components/GoalTracker';
+import { BASEURL } from '../url';
 
 const Dashboard = () => {
   const [logs, setLogs] = useState([]);
@@ -25,7 +26,7 @@ const Dashboard = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:8080/api/todaylog/all', {
+      const res = await axios.get(`${BASEURL}/api/todaylog/all`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

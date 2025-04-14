@@ -1,0 +1,1 @@
+export const BASEURL = 'https://niyam-buddy-backend.onrender.com'

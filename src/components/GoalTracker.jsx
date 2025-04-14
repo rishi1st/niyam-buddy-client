@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiTarget, FiCheckCircle, FiXCircle, FiPlus, FiEdit2, FiTrash2 } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { BASEURL } from '../url';
 
 const GoalTracker = () => {
   const [goals, setGoals] = useState([]);
@@ -15,13 +16,11 @@ const GoalTracker = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_BASE_URL = 'http://localhost:8080/api/goal';
-
   useEffect(() => {
     const fetchGoals = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(API_BASE_URL, {
+        const response = await axios.get(`${BASEURL}/api/goal`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -37,7 +36,7 @@ const GoalTracker = () => {
     };
 
     fetchGoals();
-  }, [goals]);
+  }, []);
 
   const calculateDaysRemaining = (createdAt, targetDays) => {
     const createdDate = new Date(createdAt);
@@ -56,7 +55,7 @@ const GoalTracker = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(API_BASE_URL, {
+      const response = await axios.post(`${BASEURL}/api/goal`, {
         title: newGoal.title,
         description: newGoal.description,
         targetDays: parseInt(newGoal.targetDays),
@@ -86,7 +85,7 @@ const GoalTracker = () => {
   const handleUpdateGoal = async (_id, updates) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`${API_BASE_URL}/${_id}`, updates, {
+      await axios.put(`${BASEURL}/api/goal/${_id}`, updates, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -109,7 +108,7 @@ const GoalTracker = () => {
   const handleDeleteGoal = async (_id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`${API_BASE_URL}/${_id}`, {
+      await axios.delete(`${BASEURL}/api/goal/${_id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
